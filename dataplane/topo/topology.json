@@ -1,0 +1,58 @@
+{
+    "hosts": {
+        "h1": {"ip": "10.0.1.1/24", "mac": "08:00:00:00:01:11",
+                "commands": [
+                    "ip r add default via 10.0.1.254 dev eth0",
+                    "ip nei add 10.0.1.254 lladdr 00:00:00:01:01:01 dev eth0" ],
+                "ipv6": false
+            },
+        "h11": {"ip": "10.0.1.2/24", "mac": "08:00:00:00:02:22",
+                "commands": [
+                    "ip r add default via 10.0.1.254 dev eth0",
+                    "ip nei add 10.0.1.254 lladdr 00:00:00:01:01:01 dev eth0" ],
+                "ipv6": false
+        },
+        "h22": {"ip": "10.0.2.2/24", "mac": "08:00:00:00:03:33",
+                "commands": [
+                    "ip r add default via 10.0.2.254 dev eth0",
+                    "ip nei add 10.0.2.254 lladdr 00:00:00:03:03:03 dev eth0" ],
+                "ipv6": false
+        },
+        "h33": {"ip": "10.0.3.3/24", "mac": "08:00:00:00:04:44",
+                "commands": [
+                    "ip r add default via 10.0.3.254 dev eth0",
+                    "ip nei add 10.0.3.254 lladdr 00:00:00:04:04:04 dev eth0" ],
+                "ipv6": false
+                },
+        "h6": {"ip": "10.6.6.6/24", "mac": "08:00:00:00:06:66",
+                "commands": [
+                    "ip r add default via 10.6.6.254 dev eth0",
+                    "ip nei add 10.6.6.254 lladdr 00:00:00:02:02:02 dev eth0" ],
+                "ipv6": false
+            }
+    },
+    "switches": {
+        "s1": { "runtime_json" : "dataplane/topo/s1-runtime.json" },
+        "s6": { "runtime_json" : "dataplane/topo/s6-runtime.json" },
+
+        "s2": { "runtime_json" : "dataplane/topo/s2-runtime.json" },
+        "s3": { "runtime_json" : "dataplane/topo/s3-runtime.json" },
+        "s4": { "runtime_json" : "dataplane/topo/s4-runtime.json" },
+        "s5": { "runtime_json" : "dataplane/topo/s5-runtime.json" }
+    },
+    "links": [
+        ["h1", "s1-p1"], ["h11", "s1-p11"],
+        ["s1-p2", "s2-p1"], ["s1-p3", "s3-p1"],
+
+        ["h22", "s2-p22"],
+
+        ["h33", "s3-p33"], 
+
+        ["s2-p2", "s6-p1"],
+        ["s3-p2", "s6-p2"],
+
+        ["s2-p9", "s6-p9"], ["s3-p9", "s6-p99"],
+
+        ["h6", "s6-p3"]
+    ]
+}

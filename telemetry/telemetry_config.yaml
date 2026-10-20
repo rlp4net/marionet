@@ -1,0 +1,15 @@
+sending_time: 0.25 # seconds
+
+hosts:
+  h11:
+    paths:
+      - [2, 9]
+      - [3, 9]
+# h22:
+#   paths:
+#     - [2, 2]
+#     - [3, 2]
+# h33:
+#   paths:
+#     - [2, 2]
+#     - [3, 2]
