@@ -2,6 +2,7 @@ import os
 import sys
 import grpc
 import numpy as np
+from pathlib import Path
 from scapy.all import Ether, IP, Packet
 from scapy.layers.inet import _IPOption_HDR
 from scapy.all import Ether, IP, Packet, IPOption
@@ -12,9 +13,12 @@ from scapy.fields import (
     PacketListField
 )
 
-home_dir = os.path.expanduser('~')
-p4_mininet_path = os.path.join(home_dir, 'p4-mininet')
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), p4_mininet_path))
+# Import P4Runtime lib from the P4_MININET environment variable,
+# default to `$HOME/p4-mininet`
+P4_MININET = Path(
+    os.environ.get("P4_MININET", str(Path.home() / "p4-mininet"))
+)
+sys.path.append(str(P4_MININET))
 
 import p4runtime_lib.bmv2
 import p4runtime_lib.helper

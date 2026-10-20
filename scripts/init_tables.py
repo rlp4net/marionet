@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import sys
 from time import sleep
 
@@ -11,9 +12,12 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = SCRIPT_DIR.parent
 LOGS_DIR = PROJECT_DIR / "logs"
 
-# Import P4Runtime lib
-p4_mininet_path = Path.home() / "p4-mininet"
-sys.path.append(str(p4_mininet_path))
+# Import P4Runtime lib from the P4_MININET environment variable,
+# default to `$HOME/p4-mininet`
+P4_MININET = Path(
+    os.environ.get("P4_MININET", str(Path.home() / "p4-mininet"))
+)
+sys.path.append(str(P4_MININET))
 
 import p4runtime_lib.bmv2
 import p4runtime_lib.helper
