@@ -14,7 +14,7 @@ def load_config():
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: send-mri.py <host>")
+        print("Usage: send_mri.py <host>")
         sys.exit(1)
 
     current_host = sys.argv[1]
